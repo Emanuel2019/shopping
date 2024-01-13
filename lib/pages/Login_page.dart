@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/Components/my_button.dart';
 import 'package:shopping/Components/my_textfield.dart';
+import 'package:shopping/auth/auth_service.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
-  @override
-   TextEditingController _email = new TextEditingController();
+  TextEditingController _email = new TextEditingController();
   TextEditingController _password = new TextEditingController();
-  final void Function()? onTap;  
-  void login(){
-
+  final void Function()? onTap;
+  void login(BuildContext context) async {
+    final authService = AuthService();
+    try {
+      await authService.signInWithEmailPassword(_email.text, _password.text);
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("Utilizador não autorizado"),
+              ));
+    }
   }
-  LoginPage({super.key,required this.onTap});
- 
+
+  LoginPage({super.key, required this.onTap});
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -56,16 +67,21 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 25),
             MyButton(
               text: "Login",
-              onTap: login,
+              onTap: () => login(context),
             ),
             const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Ainda sou membro?",style: TextStyle(color:Theme.of(context).colorScheme.primary),),
+                Text(
+                  "Ainda sou membro?",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                ),
                 GestureDetector(
-                 onTap: onTap,
-                  child: Text(" Registar agora",style: TextStyle(fontWeight: FontWeight.bold))),
+                    onTap: onTap,
+                    child: Text(" Registar agora",
+                        style: TextStyle(fontWeight: FontWeight.bold))),
               ],
             ),
           ],
