@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/Components/my_button.dart';
 import 'package:shopping/Components/my_textfield.dart';
-import 'package:shopping/auth/auth_service.dart';
+import 'package:shopping/services/auth/auth_service.dart';
 
 // ignore: must_be_immutable
 class RegisterPage extends StatelessWidget {
@@ -53,7 +53,7 @@ class RegisterPage extends StatelessWidget {
             // Mensagem de Bemvindo
             Center(
               child: Text(
-                "Vamos criar uma conta para si!",
+                "Cria uma conta para si!",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 16,

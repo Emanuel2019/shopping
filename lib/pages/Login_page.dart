@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping/Components/my_button.dart';
 import 'package:shopping/Components/my_textfield.dart';
-import 'package:shopping/auth/auth_service.dart';
+import 'package:shopping/services/auth/auth_service.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
